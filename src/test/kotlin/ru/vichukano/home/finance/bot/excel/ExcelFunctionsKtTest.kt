@@ -31,8 +31,8 @@ internal class ExcelFunctionsKtTest {
     fun shouldAddAmount() {
         val now = LocalDate.now()
         val book = workbook("test.xlsx")
-        val debitInfo = FinanceInfo("Зарплата", 30000.0)
-        val debitInfoOnce = FinanceInfo("Зарплата", 10000.0)
+        val debitInfo = FinanceInfo("Зарплата Витя", 30000.0)
+        val debitInfoOnce = FinanceInfo("Зарплата Витя", 10000.0)
         val creditInfo = FinanceInfo("Здоровье", 5000.0)
 
         book.addFinanceInfo(debitInfo)
