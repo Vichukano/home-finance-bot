@@ -48,7 +48,15 @@ fun workbook(name: String): Workbook {
 fun Workbook.addFinanceInfo(financeInfo: FinanceInfo) {
     val currMonth = LocalDate.now().month.name
     val sheet = if (this.isSheetPresent(currMonth)) this.getSheet(currMonth) else this.newSheetWithHeader()
-    val category = CategoryCell.values().first { c -> c.value == financeInfo.category }
+    val category = if (financeInfo.category == GIFTS.value) {
+        if (financeInfo.isDebit) {
+            CategoryCell.GIFTS_FOR_US_CELL
+        } else {
+            CategoryCell.GIFTS_CELL
+        }
+    } else {
+        CategoryCell.values().first { c -> c.value == financeInfo.category }
+    }
     val cellToInsert =
         sheet.getRow(category.rowIndex).getCell(category.colIndex - 1) ?: sheet.getRow((category.rowIndex))
             .createCell(category.colIndex - 1)
