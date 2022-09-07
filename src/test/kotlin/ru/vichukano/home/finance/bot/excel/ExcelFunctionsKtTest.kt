@@ -2,6 +2,7 @@ package ru.vichukano.home.finance.bot.excel
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import ru.vichukano.home.finance.bot.domain.DebitCreditCategory
 import ru.vichukano.home.finance.bot.domain.FinanceInfo
 import java.io.FileOutputStream
 import java.nio.file.Files
@@ -31,9 +32,9 @@ internal class ExcelFunctionsKtTest {
     fun shouldAddAmount() {
         val now = LocalDate.now()
         val book = workbook("test.xlsx")
-        val debitInfo = FinanceInfo("Зарплата Витя", 30000.0)
-        val debitInfoOnce = FinanceInfo("Зарплата Витя", 10000.0)
-        val creditInfo = FinanceInfo("Здоровье", 5000.0)
+        val debitInfo = FinanceInfo(true, "Зарплата Витя", 30000.0)
+        val debitInfoOnce = FinanceInfo(true, "Зарплата Витя", 10000.0)
+        val creditInfo = FinanceInfo(true, "Здоровье", 5000.0)
 
         book.addFinanceInfo(debitInfo)
         book.addFinanceInfo(debitInfoOnce)
